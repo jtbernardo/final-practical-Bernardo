@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FINAL PRACTICAL</title>
+    <script>
+        (function () {
+            try {
+                const savedSettings = JSON.parse(localStorage.getItem("portfolioSettings"));
+
+                document.documentElement.classList.toggle(
+                    "dark-mode",
+                    savedSettings && savedSettings.theme === "dark"
+                );
+            } catch (error) {
+                document.documentElement.classList.remove("dark-mode");
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
 </head>
@@ -115,6 +129,7 @@
                     <small class="form-error" id="message-error"></small>
                 </div>
                 <button type="submit">Send Your Message!</button>
+                <p id="success-message"></p>
             </form>
         </section>
      </main>

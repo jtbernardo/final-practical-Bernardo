@@ -359,9 +359,25 @@ textarea:focus-visible {
     }
 }
 
+@media (min-width: 601px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
 @media (max-width: 600px) {
+
+    .menu-toggle {
+    display: block;
+    margin: 0 auto; }
+
+    .container {
+        width: 100%;
+        padding-inline: 1rem;
+    }
+
     .finals-index-container {
-        width: calc(100% - 2rem);
+        width: 100%;
     }
 
     .intro h2 {
@@ -372,11 +388,7 @@ textarea:focus-visible {
         font-size: 1.75rem;
     }
 
-    .about-image,
-    .contact-image {
-        max-width: 100%;
-    }
-
+    /* IMAGES */
     .about-image {
         max-width: 200px;
         width: 100%;
@@ -389,29 +401,9 @@ textarea:focus-visible {
         height: auto;
     }
 
+    /* ABOUT SECTION */
     .about {
-        padding-inline: 1rem;
-    }
-
-    form {
-        padding: var(--space-2);
-    }
-
-    th,
-    td {
-        padding: 0.5rem;
-    }
-
-    .container {
-        padding-inline: 1rem;
-    }
-
-    .finals-index-container {
-        width: 100%;
-    }
-
-    .theme-toggle {
-        margin: 10px auto;
+        padding-inline: 0.5rem;
     }
 
     .nav-links {
@@ -423,11 +415,49 @@ textarea:focus-visible {
         display: flex;
     }
 
-    .menu-toggle {
-        display: block;
-        margin: 0 auto;
+    .theme-toggle {
+        margin: 10px auto;
+    }
+
+    /* SKILLS TABLE */
+    .skills-container {
+        width: 100%;
+        max-width: 100%;
+        padding-inline: 0.5rem;
+        margin-inline: auto;
+        overflow-x: auto;
+    }
+
+    .skills table {
+        width: 100%;
+        min-width: 0;
+    }
+
+    th,
+    td {
+        padding: 0.5rem;
+        overflow-wrap: anywhere;
+    }
+
+    /* CONTACT FORM */
+    .contact form {
+        width: 100%;
+        max-width: 100%;
+        padding: 1rem;
+        margin-inline: auto;
+    }
+
+    .contact .form-group {
+        width: 100%;
+    }
+
+    .contact input,
+    .contact textarea {
+        width: 100%;
+        box-sizing: border-box;
     }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
     html {
@@ -443,14 +473,24 @@ textarea:focus-visible {
 
 /* NAVIGATION MENU */
 
+/* NAVIGATION MENU */
 .menu-toggle {
-    display: none;
     cursor: pointer;
+    background-color: var(--color-art-two);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 12px;
+    padding: 0.5rem 0.85rem;
+    font-size: 1.3rem;
+    transition: transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 /* THEME (DARK MODE) */
 
-.dark-mode {
+html.dark-mode,
+html.dark-mode body {
     background-color: #222;
     color: white;
 }
@@ -461,23 +501,6 @@ textarea:focus-visible {
     background-color: #333;
     color: white;
 }
-
-/* NAVIGATION RESPONSIVENESS */
-
-@media screen and (max-width: 600px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .nav-links.is-open {
-        display: block;
-    }
-}
-
 
 /* THEME (DARK MODE) BUTTON */
 
@@ -568,23 +591,6 @@ form textarea {
     transform: translateY(-2px);
 }
 
-/* THEME COLOR TRANSITION */
-
-body,
-header,
-section,
-footer,
-table,
-form,
-input,
-textarea,
-button {
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease;
-}
-
 .form-error {
     display: block;
     color: #d94b65;
@@ -593,22 +599,17 @@ button {
     min-height: 1rem;
 }
 
-.menu-toggle {
-    background-color: var(--color-art-two);
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
-    border-radius: 12px;
-    padding: 0.5rem 0.85rem;
-    font-size: 1.3rem;
-    cursor: pointer;
-    transition: transform 0.3s ease,
-        background-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
 .menu-toggle:hover {
     background-color: var(--color-primary);
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* SUCCESS MESSAGE */
+#success-message {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 1rem;
 }

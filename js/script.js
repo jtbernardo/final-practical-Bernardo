@@ -4,7 +4,7 @@
 const menuToggle = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
 
-menuToggle.addEventListener("click", function() {
+menuToggle.addEventListener("click", function () {
     navLinks.classList.toggle("is-open");
 });
 
@@ -40,15 +40,6 @@ try {
     console.log("Unable to retrieve saved preferences.");
 }
 
-// Ask for the visitor's name (if they have not entered one yet before)
-if (!settings.visitorName) {
-    const visitorName = prompt("Welcome! What should we call you?");
-
-    if (visitorName && visitorName.trim()) {
-        settings.visitorName = visitorName.trim();
-    }
-}
-
 // Save visitor preferences
 function saveSettings() {
     try {
@@ -59,30 +50,30 @@ function saveSettings() {
 }
 
 // Apply the saved theme
-document.body.classList.toggle("dark-mode", settings.theme === "dark");
+document.documentElement.classList.toggle("dark-mode", settings.theme === "dark");
 
-themeToggle.textContent = settings.theme === "dark"
-    ? "Light Mode"
-    : "Dark Mode";
+themeToggle.textContent = settings.theme === "dark" ? "Light Mode" : "Dark Mode";
 
 saveSettings();
 
-// Theme switch
 themeToggle.addEventListener("click", function() {
-    document.body.classList.toggle("dark-mode");
+    document.documentElement.classList.toggle("dark-mode");
 
-    settings.theme = document.body.classList.contains("dark-mode")
-        ? "dark"
-        : "light";
+    settings.theme = document.documentElement.classList.contains("dark-mode") ? "dark" : "light";
 
-    themeToggle.textContent = settings.theme === "dark"
-        ? "Light Mode"
-        : "Dark Mode";
+    themeToggle.textContent = settings.theme === "dark" ? "Light Mode" : "Dark Mode";
 
     saveSettings();
 });
 
+// Ask for the visitor's name (if they have not entered one yet before)
+if (!settings.visitorName) {
+    const visitorName = prompt("Welcome! What should we call you?");
 
+    if (visitorName && visitorName.trim()) {
+        settings.visitorName = visitorName.trim();
+    }
+}
 
 
 // 3. SKILLS CONTENT
@@ -104,7 +95,7 @@ const skills = [
 
 const skillsList = document.getElementById("skills-list");
 
-skillsList.innerHTML = skills.map(function(skill) {
+skillsList.innerHTML = skills.map(function (skill) {
     return `
         <tr>
             <th scope="row">${skill.name}</th>
@@ -123,7 +114,7 @@ const fname = document.getElementById("fname");
 const email = document.getElementById("email");
 const message = document.getElementById("message");
 
-contactForm.addEventListener("submit", function(event) {
+contactForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     let isValid = true;
@@ -169,6 +160,12 @@ contactForm.addEventListener("submit", function(event) {
 
     if (isValid) {
         alert("Your message has been sent! ⁀જ➣");
+
+        const successMessage = document.getElementById("success-message");
+
+        successMessage.textContent = "Your message was sent! Want to send another?";
+        successMessage.style.color = "green";
+
         contactForm.reset();
     }
 });
